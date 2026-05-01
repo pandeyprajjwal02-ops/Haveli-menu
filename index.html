@@ -124,6 +124,34 @@ const menu = {
 ]
 
 };
+
+const container = document.createElement("div");
+
+for (let category in menu) {
+  let title = document.createElement("h2");
+  title.innerText = category;
+  container.appendChild(title);
+
+  menu[category].forEach(item => {
+    let div = document.createElement("div");
+    div.className = "item";
+
+    let text = document.createElement("span");
+    text.innerText = item.name + " ₹" + item.price;
+
+    let btn = document.createElement("button");
+    btn.innerText = "Add";
+    btn.onclick = () => add(item.name, item.price);
+
+    div.appendChild(text);
+    div.appendChild(btn);
+
+    container.appendChild(div);
+  });
+}
+
+document.body.appendChild(container);
+
 </script>
 <h2>Cart</h2>
 <div id="cart"></div>
