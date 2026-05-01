@@ -306,7 +306,6 @@ function order() {
   window.open("https://wa.me/919235878373?text=" + msg);
 }
 
-
 <script>
 let cart = {};
 
@@ -338,22 +337,20 @@ function display() {
     total += itemTotal;
 
     text += `
-      <div style="margin-bottom:10px;">
-        ${item} (₹${cart[item].price}) x ${cart[item].qty}
-        <br>
+      <div>
+        ${item} x ${cart[item].qty}
         <button onclick="add('${item}', ${cart[item].price})">➕</button>
         <button onclick="removeItem('${item}')">➖</button>
       </div>
     `;
   }
 
-  text += `<hr><b>Total: ₹${total}</b>`;
+  text += `<br><b>Total: ₹${total}</b>`;
   document.getElementById("cart").innerHTML = text;
 }
 
 function order() {
-  let msg = "🧾 New Order - Haveli Restaurant%0A";
-
+  let msg = "New Order - Haveli Restaurant%0A";
   let total = 0;
 
   for (let item in cart) {
