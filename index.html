@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haveli Restaurant Menu</title>
+<style>
+body {font-family: Arial; background:#000; color:#fff; padding:15px;}
+h2 {color:gold;}
+.item {margin:10px 0;}
+button {background:gold; border:none; padding:6px; margin-left:10px;}
+input, select {padding:8px; margin:5px 0; width:90%;}
+</style>
+</head>
+
+<body>
+
+<h1>🍽️ Haveli Restaurant</h1>
+
+<h2>Indian</h2>
+<div class="item">Paneer Butter Masala ₹249 <button onclick="add('Paneer Butter Masala',249)">Add</button></div>
+<div class="item">Dal Tadka ₹120 <button onclick="add('Dal Tadka',120)">Add</button></div>
+
+<h2>Chinese</h2>
+<div class="item">Chilli Paneer ₹180 <button onclick="add('Chilli Paneer',180)">Add</button></div>
+
+<h2>Pizza</h2>
+<div class="item">Paneer Pizza ₹179 <button onclick="add('Paneer Pizza',179)">Add</button></div>
+
+<h2>Cart</h2>
+<div id="cart"></div>
+
+<input placeholder="Name" id="name">
+<input placeholder="Table No / Address" id="table">
+
+<select id="type">
+<option>Dine-in</option>
+<option>Delivery</option>
+</select>
+
+<button onclick="order()">Place Order</button>
+
+<script>
+let cart = [];
+
+function add(name,price){
+cart.push({name,price});
+display();
+}
+
+function display(){
+let text="";
+let total=0;
+cart.forEach(i=>{
+text+=i.name+" - ₹"+i.price+"<br>";
+total+=i.price;
+});
+text+="<br>Total: ₹"+total;
+document.getElementById("cart").innerHTML=text;
+}
+
+function order(){
+let msg="🛒 New Order - Haveli Restaurant%0A";
+cart.forEach(i=>{
+msg+=i.name+"%0A";
+});
+
+let name=document.getElementById("name").value;
+let table=document.getElementById("table").value;
+let type=document.getElementById("type").value;
+
+msg+="%0AType: "+type;
+msg+="%0AName: "+name;
+msg+="%0AInfo: "+table;
+
+window.open("https://wa.me/919235878373?text="+msg);
+}
+</script>
+
+</body>
+</html>
