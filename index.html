@@ -167,41 +167,213 @@ document.body.appendChild(container);
 <button onclick="order()">Place Order</button>
 
 <script>
-let cart = [];
+let cart = {};
 
-function add(name,price){
-cart.push({name,price});
-display();
+function add(name, price) {
+  if (cart[name]) {
+    cart[name].qty += 1;
+  } else {
+    cart[name] = { price: price, qty: 1 };
+  }
+  display();
 }
 
-function display(){
-let text="";
-let total=0;
-cart.forEach(i=>{
-text+=i.name+" - ₹"+i.price+"<br>";
-total+=i.price;
-});
-text+="<br>Total: ₹"+total;
-document.getElementById("cart").innerHTML=text;
+function removeItem(name) {
+  if (cart[name]) {
+    cart[name].qty -= 1;
+    if (cart[name].qty <= 0) {
+      delete cart[name];
+    }
+  }
+  display();
 }
 
-function order(){
-let msg="🛒 New Order - Haveli Restaurant%0A";
-cart.forEach(i=>{
-msg+=i.name+"%0A";
-});
+function display() {
+  let text = "";
+  let total = 0;
 
-let name=document.getElementById("name").value;
-let table=document.getElementById("table").value;
-let type=document.getElementById("type").value;
+  for (let item in cart) {
+    let itemTotal = cart[item].price * cart[item].qty;
+    total += itemTotal;
 
-msg+="%0AType: "+type;
-msg+="%0AName: "+name;
-msg+="%0AInfo: "+table;
+    text += `
+      <div style="margin-bottom:10px;">
+        ${item} (₹${cart[item].price}) x ${cart[item].qty}
+        <br>
+        <button onclick="add('${item}', ${cart[item].price})">➕</button>
+        <button onclick="removeItem('${item}')">➖</button>
+      </div>
+    `;
+  }
 
-window.open("https://wa.me/919235878373?text="+msg);
+  text += `<hr><b>Total: ₹${total}</b>`;
+  document.getElementById("cart").innerHTML = text;
+}
+
+function order() {
+  let msg = "🧾 New Order - Haveli Restaurant%0A";
+
+  let total = 0;
+
+  for (let item in cart) {
+    let qty = cart[item].qty;
+    let price = cart[item].price;
+    total += qty * price;
+
+    msg += `${item} x ${qty} = ₹${qty * price}%0A`;
+  }
+
+  msg += `%0ATotal: ₹${total}%0A`;
+
+  let name = document.getElementById("name").value;
+  let table = document.getElementById("table").value;
+  let type = document.getElementById("type").value;
+
+  msg += `%0AType: ${type}`;
+  msg += `%0AName: ${name}`;
+  msg += `%0AInfo: ${table}`;
+
+  window.open("https://wa.me/919235878373?text=" + msg);
+}
+
+<script>
+let cart = {};
+
+function add(name, price) {
+  if (cart[name]) {
+    cart[name].qty += 1;
+  } else {
+    cart[name] = { price: price, qty: 1 };
+  }
+  display();
+}
+
+function removeItem(name) {
+  if (cart[name]) {
+    cart[name].qty -= 1;
+    if (cart[name].qty <= 0) {
+      delete cart[name];
+    }
+  }
+  display();
+}
+
+function display() {
+  let text = "";
+  let total = 0;
+
+  for (let item in cart) {
+    let itemTotal = cart[item].price * cart[item].qty;
+    total += itemTotal;
+
+    text += `
+      <div style="margin-bottom:10px;">
+        ${item} (₹${cart[item].price}) x ${cart[item].qty}
+        <br>
+        <button onclick="add('${item}', ${cart[item].price})">➕</button>
+        <button onclick="removeItem('${item}')">➖</button>
+      </div>
+    `;
+  }
+
+  text += `<hr><b>Total: ₹${total}</b>`;
+  document.getElementById("cart").innerHTML = text;
+}
+
+function order() {
+  let msg = "🧾 New Order - Haveli Restaurant%0A";
+
+  let total = 0;
+
+  for (let item in cart) {
+    let qty = cart[item].qty;
+    let price = cart[item].price;
+    total += qty * price;
+
+    msg += `${item} x ${qty} = ₹${qty * price}%0A`;
+  }
+
+  msg += `%0ATotal: ₹${total}%0A`;
+
+  let name = document.getElementById("name").value;
+  let table = document.getElementById("table").value;
+  let type = document.getElementById("type").value;
+
+  msg += `%0AType: ${type}`;
+  msg += `%0AName: ${name}`;
+  msg += `%0AInfo: ${table}`;
+
+  window.open("https://wa.me/919235878373?text=" + msg);
+}
+
+
+<script>
+let cart = {};
+
+function add(name, price) {
+  if (cart[name]) {
+    cart[name].qty += 1;
+  } else {
+    cart[name] = { price: price, qty: 1 };
+  }
+  display();
+}
+
+function removeItem(name) {
+  if (cart[name]) {
+    cart[name].qty -= 1;
+    if (cart[name].qty <= 0) {
+      delete cart[name];
+    }
+  }
+  display();
+}
+
+function display() {
+  let text = "";
+  let total = 0;
+
+  for (let item in cart) {
+    let itemTotal = cart[item].price * cart[item].qty;
+    total += itemTotal;
+
+    text += `
+      <div style="margin-bottom:10px;">
+        ${item} (₹${cart[item].price}) x ${cart[item].qty}
+        <br>
+        <button onclick="add('${item}', ${cart[item].price})">➕</button>
+        <button onclick="removeItem('${item}')">➖</button>
+      </div>
+    `;
+  }
+
+  text += `<hr><b>Total: ₹${total}</b>`;
+  document.getElementById("cart").innerHTML = text;
+}
+
+function order() {
+  let msg = "🧾 New Order - Haveli Restaurant%0A";
+
+  let total = 0;
+
+  for (let item in cart) {
+    let qty = cart[item].qty;
+    let price = cart[item].price;
+    total += qty * price;
+
+    msg += `${item} x ${qty} = ₹${qty * price}%0A`;
+  }
+
+  msg += `%0ATotal: ₹${total}%0A`;
+
+  let name = document.getElementById("name").value;
+  let table = document.getElementById("table").value;
+  let type = document.getElementById("type").value;
+
+  msg += `%0AType: ${type}`;
+  msg += `%0AName: ${name}`;
+  msg += `%0AInfo: ${table}`;
+
+  window.open("https://wa.me/919235878373?text=" + msg);
 }
 </script>
-
-</body>
-</html>
