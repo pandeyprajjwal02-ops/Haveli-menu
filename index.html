@@ -16,16 +16,115 @@ input, select {padding:8px; margin:5px 0; width:90%;}
 
 <h1>🍽️ Haveli Restaurant</h1>
 
-<h2>Indian</h2>
-<div class="item">Paneer Butter Masala ₹249 <button onclick="add('Paneer Butter Masala',249)">Add</button></div>
-<div class="item">Dal Tadka ₹120 <button onclick="add('Dal Tadka',120)">Add</button></div>
 
-<h2>Chinese</h2>
-<div class="item">Chilli Paneer ₹180 <button onclick="add('Chilli Paneer',180)">Add</button></div>
+<script>
+const menu = {
 
-<h2>Pizza</h2>
-<div class="item">Paneer Pizza ₹179 <button onclick="add('Paneer Pizza',179)">Add</button></div>
+"Indian Cuisine": [
+{name:"Tandoori Matka Paneer", price:110},
+{name:"Handi Paneer", price:220},
+{name:"Paneer Lababdar", price:219},
+{name:"Paneer Tikka Masala", price:230},
+{name:"Paneer Butter Masala", price:249},
+{name:"Kadai Paneer", price:249},
+{name:"Paneer Do Pyaza", price:210},
+{name:"Shahi Paneer", price:220},
+{name:"Malai Kofta", price:240},
+{name:"Matar Paneer", price:199},
+{name:"Dal Tadka", price:120},
+{name:"Jeera Dal", price:99}
+],
 
+"Indian Starters": [
+{name:"Paneer Tikka", price:219},
+{name:"Garlic Paneer Tikka", price:210},
+{name:"Paneer Malai Tikka", price:199},
+{name:"Veg Seekh Kebab", price:179},
+{name:"Hara Bhara Kebab", price:119},
+{name:"Tandoori Chicken", price:450},
+{name:"Chicken Tikka", price:219}
+],
+
+"Chinese": [
+{name:"Chilli Paneer", price:180},
+{name:"Paneer Manchurian", price:170},
+{name:"Spring Roll", price:80},
+{name:"Chilli Mushroom", price:180},
+{name:"Steam Momos", price:69},
+{name:"Fried Momos", price:89},
+{name:"Veg Manchurian", price:150},
+{name:"Gobi Manchurian", price:180},
+{name:"Chilli Chicken", price:299}
+],
+
+"Snacks": [
+{name:"Veg Fried Rice", price:130},
+{name:"Chicken Fried Rice", price:199},
+{name:"Paneer Chowmein", price:160},
+{name:"Hakka Noodles", price:179},
+{name:"Veg Chowmein", price:150}
+],
+
+"Burger & Sandwich": [
+{name:"Veg Burger", price:60},
+{name:"Paneer Burger", price:80},
+{name:"Chicken Burger", price:99},
+{name:"Veg Sandwich", price:69},
+{name:"Corn Cheese Sandwich", price:89}
+],
+
+"Pizza": [
+{name:"Margherita Pizza", price:149},
+{name:"Onion Capsicum Pizza", price:159},
+{name:"Cheese Corn Pizza", price:169},
+{name:"Paneer Pizza", price:179},
+{name:"Farm House Pizza", price:199},
+{name:"Chicken Pizza", price:249}
+],
+
+"Shakes": [
+{name:"Oreo Shake", price:99},
+{name:"KitKat Shake", price:99},
+{name:"Cold Coffee", price:59},
+{name:"Chocolate Shake", price:99},
+{name:"Vanilla Shake", price:69},
+{name:"Strawberry Shake", price:69},
+{name:"Mango Shake", price:69}
+],
+
+"Beverages": [
+{name:"Coffee", price:49},
+{name:"Hot Chocolate", price:49},
+{name:"Fresh Lemon Soda", price:59},
+{name:"Kulhad Chai", price:20},
+{name:"Mint Mojito", price:99},
+{name:"Lassi", price:59}
+],
+
+"Soups": [
+{name:"Manchow Soup", price:99},
+{name:"Hot & Sour Soup", price:99},
+{name:"Tomato Soup", price:99},
+{name:"Sweet Corn Soup", price:99},
+{name:"Chicken Soup", price:119}
+],
+
+"Desserts": [
+{name:"Ice Cream", price:60},
+{name:"Gulab Jamun (2pc)", price:40}
+],
+
+"Breads": [
+{name:"Missi Roti", price:40},
+{name:"Butter Naan", price:35},
+{name:"Plain Naan", price:30},
+{name:"Tandoori Roti", price:20},
+{name:"Butter Roti", price:25},
+{name:"Tawa Roti", price:8}
+]
+
+};
+</script>
 <h2>Cart</h2>
 <div id="cart"></div>
 
